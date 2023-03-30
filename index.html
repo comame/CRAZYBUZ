@@ -20,7 +20,6 @@
             >
         </p>
 
-        <button id="start">START/STOP</button>
         <label
             >Gain:
             <input
@@ -31,25 +30,20 @@
                 id="gain"
                 value="0.05"
         /></label>
-        <label
-            >BPM:
-            <input
-                type="range"
-                min="1"
-                max="720"
-                step="10"
-                id="bpm"
-                value="360"
-        /></label>
-        <label
-            >Wave:
+        <div>
+            <button id="start">START BGM</button>
             <select id="wave">
                 <option value="square">square</option>
                 <option value="sine">sine</option>
                 <option value="sawtooth">sawtooth</option>
                 <option value="triangle">triangle</option>
             </select>
-        </label>
+        </div>
+        <div>
+            <button id="background">START BUS SOUND</button>
+        </div>
+
+        <button id="horn">HORN</button>
 
         <script src="./app.js"></script>
 
