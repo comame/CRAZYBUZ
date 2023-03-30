@@ -10,25 +10,35 @@ const waveInput = document.getElementById('wave')
 
 const context = new AudioContext()
 
-const oscillator = context.createOscillator()
+const oscillatorA = context.createOscillator()
+const oscillatorB = context.createOscillator()
 const gainNode = context.createGain()
 
-oscillator.connect(gainNode)
+oscillatorA.connect(gainNode)
+oscillatorB.connect(gainNode)
 gainNode.connect(context.destination)
 
-oscillator.type = waveInput.value
-oscillator.frequency.value = 440
+oscillatorA.type = waveInput.value
+oscillatorA.frequency.value = 440
+oscillatorB.type = waveInput.value
+oscillatorB.frequency.value = 440
 gainNode.gain.value = gainInput.value
 
-let previousFreqIndex = 0
+let previousFreqIndexA = 0
+let previousFreqIndexB = 0
 const startInterval = (bpm) =>
     setInterval(() => {
-        let i = previousFreqIndex
-        while (i === previousFreqIndex) {
-            i = Math.trunc(Math.random() * SCALE_FREQUENCIES.length) - 1
+        let i = previousFreqIndexA
+        let j = previousFreqIndexB
+        while (i === previousFreqIndexA) {
+            i = Math.trunc(Math.random() * (SCALE_FREQUENCIES.length - 1))
+        }
+        while (j === previousFreqIndexB) {
+            j = Math.trunc(Math.random() * (SCALE_FREQUENCIES.length - 1))
         }
 
-        oscillator.frequency.value = SCALE_FREQUENCIES[i]
+        oscillatorA.frequency.value = SCALE_FREQUENCIES[i]
+        oscillatorB.frequency.value = SCALE_FREQUENCIES[j]
     }, (60 * 1000) / bpm)
 
 let intervalId = startInterval(BPM)
@@ -43,10 +53,12 @@ startButton.addEventListener('click', () => {
         }
     } else {
         started = true
-        oscillator.start()
+        oscillatorA.start()
+        oscillatorB.start()
     }
 })
 
+// 440 Hz から前後 4 オクターブ分の十二平均律の周波数を生成する
 function frequencies() {
     const value = [SCALE_BASE]
 
@@ -68,5 +80,6 @@ bpmInput.addEventListener('input', () => {
 })
 
 waveInput.addEventListener('input', () => {
-    oscillator.type = waveInput.value
+    oscillatorA.type = waveInput.value
+    oscillatorB.type = waveInput.value
 })
