@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CRAZYBUZ</title>
+    </head>
+
+    <body>
+        <h2>CRAZYBUZ</h2>
+        <p>
+            <a href="https://dic.pixiv.net/a/CRAZYBUS" target="_blank"
+                >CRAZYBUS</a
+            >
+            BGM
+        </p>
+        <p>
+            <a href="https://github.com/comame/CRAZYBUZ" target="_blank"
+                >https://github.com/comame/CRAZYBUZ</a
+            >
+        </p>
+
+        <button id="start">START/STOP</button>
+        <label
+            >Gain:
+            <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.001"
+                id="gain"
+                value="0.05"
+        /></label>
+        <label
+            >BPM:
+            <input
+                type="range"
+                min="1"
+                max="720"
+                step="10"
+                id="bpm"
+                value="360"
+        /></label>
+        <label
+            >Wave:
+            <select id="wave">
+                <option value="square">square</option>
+                <option value="sine">sine</option>
+                <option value="sawtooth">sawtooth</option>
+                <option value="triangle">triangle</option>
+            </select>
+        </label>
+
+        <script src="app.js"></script>
+
+        <style>
+            label {
+                display: block;
+            }
+
+            input {
+                vertical-align: bottom;
+            }
+        </style>
+    </body>
+</html>
